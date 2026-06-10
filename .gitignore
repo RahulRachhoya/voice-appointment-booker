@@ -2,31 +2,41 @@
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
+.Python
 *.egg-info/
 dist/
 build/
 .eggs/
-venv/
+
+# Virtual environments
 .venv/
+venv/
 env/
 
 # Environment
 .env
-*.env
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checking
+.pyright/
 
 # IDE
 .vscode/
 .idea/
-*.swp
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
-logs/
-
 # DB
 *.db
-*.sqlite3
+*.sqlite
+
+# Misc
+*.log
+/tmp/
