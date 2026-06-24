@@ -1,6 +1,7 @@
 """TTS service using ElevenLabs eleven_flash_v2_5."""
 
 import logging
+from collections.abc import AsyncIterator
 
 log = logging.getLogger(__name__)
 
@@ -28,7 +29,7 @@ async def synthesize(text: str) -> bytes:
 
         client = AsyncElevenLabs(api_key=settings.elevenlabs_api_key)
 
-        audio_iter = await client.text_to_speech.convert(
+        audio_iter: AsyncIterator[bytes] = client.text_to_speech.convert(
             voice_id=settings.elevenlabs_voice_id,
             text=text,
             model_id="eleven_flash_v2_5",

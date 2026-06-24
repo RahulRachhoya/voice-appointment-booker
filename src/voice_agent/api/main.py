@@ -29,10 +29,10 @@ def create_app() -> FastAPI:
 
     application.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=["http://localhost:3000", "http://localhost:8000", "http://localhost:7860"],
         allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
+        allow_methods=["GET", "POST", "PUT", "DELETE"],
+        allow_headers=["Content-Type", "Authorization", "X-Request-ID"],
     )
 
     application.include_router(health.router)
@@ -40,7 +40,7 @@ def create_app() -> FastAPI:
     application.include_router(appointments.router, prefix="/api")
 
     @application.get("/")
-    async def root() -> dict[str, str]:
+    async def root() -> dict[str, str]:  # pyright: ignore[reportUnusedFunction]
         return {"name": "Voice AI Appointment Booker", "status": "running", "version": "1.0.0"}
 
     return application

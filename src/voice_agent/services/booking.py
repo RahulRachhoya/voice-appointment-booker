@@ -3,8 +3,14 @@
 import logging
 from dataclasses import dataclass, field
 from datetime import date
+from typing import Dict
 
 log = logging.getLogger(__name__)
+
+
+def _default_slots() -> Dict[str, "Appointment | None"]:
+    """Factory for empty slots dict."""
+    return {}
 
 
 @dataclass
@@ -28,7 +34,7 @@ class BookingManager:
     Value is None when available, or an Appointment when booked.
     """
 
-    _slots: dict[str, Appointment | None] = field(default_factory=dict)
+    _slots: Dict[str, "Appointment | None"] = field(default_factory=_default_slots)
     _next_id: int = field(default=1)
 
     def __post_init__(self) -> None:
