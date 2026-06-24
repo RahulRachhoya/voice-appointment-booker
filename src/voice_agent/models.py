@@ -1,6 +1,6 @@
 """SQLModel table definitions for appointments."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlmodel import Field, SQLModel
 
@@ -20,7 +20,7 @@ class Appointment(AppointmentBase, table=True):
     """Database table for appointments."""
 
     id: int | None = Field(default=None, primary_key=True)
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     status: str = "confirmed"  # confirmed | cancelled | completed
 
 
